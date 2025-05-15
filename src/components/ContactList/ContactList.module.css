@@ -1,13 +1,49 @@
-.list {
+ul {
     list-style: none;
     padding: 0;
-    margin: 0;
-height: 100%;
-overflow-y: auto;   
-height: 600px;
-
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.listItem {
-    margin-bottom: 8px;
+li {
+
+    padding: 15px;
+    border: 1px solid #381230;
+    border-radius: 5px;
+    background-color: #9b5b7c;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.contact {
+    display: flex;
+    flex-direction: column;
+}
+
+.contactName {
+    font-weight: bold;
+    color: #381230;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.contactNmbr {
+    font-weight: bold;
+    color: #d0244c;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.deleteBtn {
+    background-color: #49021e;
+    color: rgb(171, 95, 149);
+    border: 1px solid #971442;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 15px;
+    cursor: pointer;
 }

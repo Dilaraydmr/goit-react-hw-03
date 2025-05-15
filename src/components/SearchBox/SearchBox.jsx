@@ -1,19 +1,27 @@
-import css from './SearchBox.module.css';
+import { Field, Form, Formik } from 'formik'
+import React from 'react'
+// import * as Yup from "yup";
+import { nanoid } from 'nanoid'
+import SearchBoxCss from './SearchBox.module.css'
 
-function SearchBox({ value, onChange }) {
+const SearchBox = ({ searchName }) => {
+    const searchId = nanoid();
+    const handleChange = e => {
+        const { value } = e.target;
+        searchName(value)
+    }
+
     return (
-        <div className={css.container}>
-            <label className={css.label}>
-                Find contacts by name
-                <input
-                    className={css.input}
-                    type="text"
-                    value={value}
-                    onChange={evt => onChange(evt.target.value)}
-                />
-            </label>
-        </div>
-    );
+        <Formik>
+            <Form className={SearchBoxCss.form}>
+                <label htmlFor={searchId}>Find contacts by name</label>
+                <Field id={searchId}
+                    name='search'
+                    className={SearchBoxCss.search}
+                    onChange={handleChange} />
+            </Form>
+        </Formik>
+    )
 }
 
-export default SearchBox;
+export default SearchBox

@@ -1,21 +1,35 @@
-import Contact from '../Contact/Contact';
-import styles from './ContactList.module.css';
+import React from 'react'
+import ContactListCss from './ContactList.module.css'
+import Contact from './Contact'
 
-function ContactList({ contacts, onDeleteContact }) {
+
+const ContactList = ({ contacts, filteredName, handleDeleteContact }) => {
+    const filteredContacts = (contacts, filteredName) => {
+        if (filteredName === '') {
+            return contacts
+        }
+        return contacts.filter((contact) =>
+            contact.name.toLowerCase().includes(filteredName.toLowerCase())
+        )
+
+    }
+    const sortedContacts = filteredContacts(contacts, filteredName);
     return (
-        <ul className={styles.list}>
-            {contacts.map(({ id, name, number }) => (
-                <li key={id} className={styles.listItem}>
+        <ul className={ContactListCss.contactList}>
+            {sortedContacts
+                ? sortedContacts.map((contact) => (
                     <Contact
-                        id={id}
-                        name={name}
-                        number={number}
-                        onDeleteContact={onDeleteContact}
+                        key={contact.id}
+                        id={contact.id}
+                        name={contact.name}
+                        number={contact.number}
+                        handleDeleteContact={handleDeleteContact}
                     />
-                </li>
-            ))}
+                ))
+                : null}
         </ul>
-    );
+
+    )
 }
 
-export default ContactList;
+export default ContactList
